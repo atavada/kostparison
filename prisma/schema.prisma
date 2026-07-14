@@ -1,0 +1,36 @@
+// Prisma Schema — Kostparison
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Kos {
+  id            String      @id @default(cuid())
+  nama          String
+  alamat        String
+  harga         Int
+  kontakPemilik String?
+  tanggalSurvey DateTime    @default(now())
+  catatan       String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  fasilitas     Fasilitas[]
+}
+
+model Fasilitas {
+  id        String   @id @default(cuid())
+  nama      String
+  rating    Int      // 1-10
+  catatan   String?
+  fotoUrls  String[] @default([])
+  kosId     String
+  kos       Kos      @relation(fields: [kosId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
