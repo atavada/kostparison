@@ -4,6 +4,8 @@ import ComparePageClient from "./ComparePageClient";
 import type { KosCardData } from "@/components/KosCard";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Bandingkan Kos — Kostparison",
 };

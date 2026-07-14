@@ -6,6 +6,8 @@ import Button from "@/components/Button";
 import DeleteButton from "@/components/DeleteButton";
 import FasilitasSection from "@/components/FasilitasSection";
 
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ id: string }> };
 
 async function getKos(id: string) {

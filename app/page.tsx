@@ -2,6 +2,8 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import KosCard, { KosCardData } from "@/components/KosCard";
 
+export const dynamic = "force-dynamic";
+
 async function getKosList(): Promise<KosCardData[]> {
   const list = await prisma.kos.findMany({
     orderBy: { createdAt: "desc" },
