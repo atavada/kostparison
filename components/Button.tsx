@@ -37,6 +37,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       className = "",
       children,
+      type = "button",   // default "button" — mencegah accidental form submit di mobile
       ...props
     },
     ref
@@ -44,6 +45,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        type={type}
         disabled={disabled || loading}
         className={[
           "inline-flex items-center justify-center gap-2 rounded-lg font-medium",

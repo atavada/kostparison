@@ -101,9 +101,10 @@ export default function KosForm({ mode, initialValues, kosId }: KosFormProps) {
       }
 
       // Redirect ke halaman detail kos
+      // Gunakan window.location untuk hard navigation — lebih reliable di mobile
+      // karena router.push() kadang gagal setelah async fetch di iOS Safari
       const targetId = mode === "create" ? data.id : kosId;
-      router.push(`/kos/${targetId}`);
-      router.refresh();
+      window.location.href = `/kos/${targetId}`;
     } catch {
       setServerError("Gagal terhubung ke server. Periksa koneksi internet.");
     } finally {

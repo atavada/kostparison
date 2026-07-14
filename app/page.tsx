@@ -5,9 +5,11 @@ import KosCard, { KosCardData } from "@/components/KosCard";
 async function getKosList(): Promise<KosCardData[]> {
   const list = await prisma.kos.findMany({
     orderBy: { createdAt: "desc" },
-    include: { _count: { select: { fasilitas: true } } },
+    include: {
+      _count: { select: { fasilitas: true } },
+      fasilitas: { select: { rating: true } },
+    },
   });
-  // Serialisasi Date → string agar aman dikirim ke Client Component
   return list.map((k) => ({
     ...k,
     tanggalSurvey: k.tanggalSurvey.toISOString(),
